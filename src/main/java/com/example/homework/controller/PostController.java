@@ -7,19 +7,18 @@ import com.example.homework.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+
+import javax.xml.bind.SchemaOutputResolver;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 public class PostController {
-    private final PostRepository postRepository;
     private final PostService postService;
 
-    @GetMapping("/api/posts")
+    @GetMapping("/api/post")
     public Post getPost(@RequestParam Long id) {
+
         return postService.find(id);
     }
 
