@@ -18,8 +18,8 @@ public class PostController {
     private final PostRepository postRepository;
     private final PostService postService;
 
-    @GetMapping("/api/posts/{id}")
-    public Post getPost(@PathVariable Long id) {
+    @GetMapping("/api/posts")
+    public Post getPost(@RequestParam Long id) {
         return postService.find(id);
     }
 
@@ -29,18 +29,11 @@ public class PostController {
     }
 
     @PostMapping("/api/posts")
-    public Post createPost(@RequestBody PostRequestDto requestDto){
-        return postService.createPost(requestDto);
-    }
-
+    public Post createPost(@RequestBody PostRequestDto requestDto){ return postService.createPost(requestDto); }
 
     @PutMapping("/api/posts/{id}")
-    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
-        return postService.update(id, requestDto);
-    }
+    public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) { return postService.update(id, requestDto); }
 
     @DeleteMapping("/api/posts/{id}")
-    public Long deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
-        return postService.remove(id, requestDto);
-    }
+    public Long deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) { return postService.remove(id, requestDto); }
 }
