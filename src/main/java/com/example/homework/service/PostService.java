@@ -18,11 +18,10 @@ import java.util.List;
 public class PostService {
     private final PostRepository postRepository;
 
-    public Post find(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(
+    public Post findOne(Long id) {
+        return postRepository.findById(id).orElseThrow(
                 () -> new NullPointerException("아이디가 존재하지 않습니다.")
         );
-        return post;
     }
 
     public List<Post> findAll(){
@@ -32,7 +31,7 @@ public class PostService {
     }
 
     @Transactional
-    public Post createPost(PostRequestDto requestDto){
+    public Post save(PostRequestDto requestDto){
         Post post = new Post(requestDto);
         return postRepository.save(post);
     }

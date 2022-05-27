@@ -1,14 +1,10 @@
 package com.example.homework.controller;
 
 import com.example.homework.domain.Post;
-import com.example.homework.domain.PostRepository;
 import com.example.homework.domain.PostRequestDto;
 import com.example.homework.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -17,10 +13,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping("/api/post")
-    public Post getPost(@RequestParam Long id) {
-
-        return postService.find(id);
-    }
+    public Post getPost(@RequestParam Long id) { return postService.findOne(id); }
 
     @GetMapping("/api/posts")
     public List<Post> getListPost() {
@@ -28,7 +21,7 @@ public class PostController {
     }
 
     @PostMapping("/api/posts")
-    public Post createPost(@RequestBody PostRequestDto requestDto){ return postService.createPost(requestDto); }
+    public Post createPost(@RequestBody PostRequestDto requestDto){ return postService.save(requestDto); }
 
     @PutMapping("/api/posts/{id}")
     public Long updatePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) { return postService.update(id, requestDto); }
